@@ -48,8 +48,9 @@ export default function DetailCompany({bgImage}) {
     }
 
     async function toDelete() { //función que elimina el objeto
-        await dispatch(companyActions.deleteCompany(id))
-            .then(navigate("/getCompanies",{replace:true}))
+        /* await dispatch(companyActions.deleteCompany(id))
+            .then(navigate("/getCompanies",{replace:true})) */
+            navigate("/getCompanies",{replace:true})
     }
 
     let classN = 'backGroundStyle '+bgImage
