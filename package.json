@@ -21,11 +21,7 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
-<<<<<<< HEAD
     "serve": "^13.0.3",
-=======
-    "serve": "^13.0.2",
->>>>>>> dda4d15dd5efafa70fc87712f738dca14be1249a
     "web-vitals": "^2.1.4"
   },
   "scripts": {
