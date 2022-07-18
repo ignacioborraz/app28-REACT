@@ -18,7 +18,7 @@ export default function SignIn({options}) {
     
     async function handleCreation(event) {
         event.preventDefault()
-        //console.log(allInputs)
+        console.log(allInputs)
         allInputs['from'] = 'signUpForm'
         let res = await dispatch(userActions.signIn(allInputs))
         if (!res.data.success) {

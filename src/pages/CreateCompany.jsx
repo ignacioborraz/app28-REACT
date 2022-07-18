@@ -1,11 +1,12 @@
+import {useState,useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 
 import {Grid} from '@mui/material'
 
+import Container from '../components/Container'
 import StyledGrid from '../components/StyledGrid'
 import StyledGridImg from '../components/StyledGridImg'
-import StyledInput from '../components/StyledInput'
 import Text from '../components/Text'
 
 import companyActions from '../redux/actions/companyActions'
@@ -14,13 +15,23 @@ export default function CreateCompany({options}) {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
-    const allInputs = {}
+    const [files,setFiles] = useState([])
     
     async function handleCreation(event) {
         event.preventDefault()
-        console.log(allInputs)
-        await dispatch(companyActions.createCompany(allInputs))
+        const file = await files[0]
+        console.log(files)
+        console.log(file)
+        const nameCompany = await event.target[0].value
+        const detailCompany = await event.target[2].value
+        console.log(nameCompany)
+        console.log(detailCompany)
+        const formData = new FormData()
+            formData.append('nameCompany', nameCompany)
+            formData.append('detailCompany', detailCompany)
+            formData.append('file', file)
+        console.log(formData)
+        await dispatch(companyActions.createCompany(formData))
             .then(navigate("/createdCompany",{replace:true}))
     }
 
@@ -34,9 +45,15 @@ export default function CreateCompany({options}) {
                     {options.title}
                 </Text>
                 <form onSubmit={handleCreation} className='newForm'>
-                    {options.data.map(everyData => (
-                        <StyledInput key={everyData.id} everyData={everyData} allInputs={allInputs} label={true}/>
-                    ))}
+                    <Container width='100%' color='rgb(224,224,224)' bgColor='rgb(2,0,3)' paddding='2px' margin='2px'>
+                        <input name='nameCompany' id='nameCompany' placeholder='Name' type="text" className='inputForm' required/>
+                    </Container>
+                    <Container width='100%' color='rgb(224,224,224)' bgColor='rgb(2,0,3)' paddding='2px' margin='2px'>
+                        <input name='logoCompany' id='logoCompany' placeholder='Logo' type="file" className='inputForm' onChange={(event)=>setFiles(event.target.files)} required/>
+                    </Container>
+                    <Container width='100%' color='rgb(224,224,224)' bgColor='rgb(2,0,3)' paddding='2px' margin='2px'>
+                        <input name='detailCompany' id='detailCompany' placeholder='Detail' type="text" className='inputForm' required/>
+                    </Container>                 
                     <input type="submit" className='buttonForm' required value='create!' />
                 </form>
             </StyledGrid>

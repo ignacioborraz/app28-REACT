@@ -4,10 +4,10 @@ import apiUrl from '../../url'
 
 const companyActions = {
 
-    createCompany: (nameCompany,logoCompany,detailCompany) => {
+    createCompany: (formData) => {
         return async(dispatch,getState) => {
             try {
-                await axios.post(apiUrl+'apiJobs/company',{nameCompany,logoCompany,detailCompany})    
+                await axios.post(apiUrl+'apiJobs/company',formData)    
             } catch(error) {
                 console.log(error)
             }            

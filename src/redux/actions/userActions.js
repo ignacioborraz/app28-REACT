@@ -23,7 +23,7 @@ const userActions = {
     },
 
     signIn: (data) => {
-        //console.log(data)
+        console.log(data)
         return async(dispatch, getState) => {
             try {
                 const res = await axios.post(apiUrl+'apiJobs/auth/signIn',data)

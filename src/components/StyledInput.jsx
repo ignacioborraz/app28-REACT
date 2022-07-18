@@ -30,6 +30,7 @@ export default function StyledInput({everyData,allInputs,label}) {
                     {everyData.id.includes('name') ? <WorkIcon /> : everyData.id.includes('salary') ? <AttachMoneyIcon /> : (everyData.id.includes('logo') || everyData.id.includes('photo')) ? <AddAPhotoIcon /> : everyData.id.includes('word') ? <KeyIcon /> : <CategoryIcon />}
                 </StyledIcon></label>}
                 {everyData.id.includes('word') ? <input name={everyData.id} id={everyData.id} placeholder={everyData.placeholder} onKeyUp={toAdd} type="password" className='inputForm' ref={input} required/> :
+                (everyData.id.includes('photo')||everyData.id.includes('logo')) ? <input name={everyData.id} id={everyData.id} placeholder={everyData.placeholder} onKeyUp={toAdd} type="file" className='inputForm' ref={input} required/> :
                 <input name={everyData.id} id={everyData.id} placeholder={everyData.placeholder} onKeyUp={toAdd} type="text" className='inputForm' ref={input} required/>
                 }
             </Container>
